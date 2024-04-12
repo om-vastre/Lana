@@ -6,6 +6,7 @@ import login
 app = Flask(__name__)
 
 valid_users = {
+    "4": "pass",
     "7": "pass",
     "11": "pass"
 }
@@ -37,12 +38,8 @@ def query():
     query = data.get('query')
 
     if user_id in valid_users:
-        response = {
-            "message": "Query results for user {}".format(user_id),
-            "query": query,
-            "results": user_queries.get(user_id, {}).get(query, "No results found")
-        }
-        return jsonify(response), 200
+        login.categorize_query(user_id, query)
+        return jsonify({"Suckkk": "Returned till API"}), 200
     else:
         return jsonify({"error": "User not found"}), 404
 

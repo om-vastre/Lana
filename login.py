@@ -29,13 +29,14 @@ def categorize_query(ID, query):
     #     return resp['response']
     # else:
     #     None
+
     
-    if resp['response'].find("inform") != -1 or resp['response'].find("Inform") != -1:
+    if resp['response'][:25].find("inform") != -1 or resp['response'][:25].find("Inform") != -1:
         print("Sure! Let me inform you about...")
-        inform.main(ID, prompt)
-    elif resp['response'].find("retrieve") != -1 or resp['response'].find("Retrieve") != -1:
+        inform.main(ID, query)
+    elif resp['response'][:25].find("retrieve") != -1 or resp['response'][:25].find("Retrieve") != -1:
         print("Okay! Here is what I found.")
-        main.main(prompt)
+        main.main(query)
     else:
         print("Unknown category : ", resp['response'])
 
